@@ -19,12 +19,12 @@ ui <- fluidPage(
   )
 )
 
-server <- function(inputId, output) {
+server <- function(input, output) {
   output$distPlot <- renderPlot({
     x <- faithful[, 2]
-    newbins<- seq(min(x), max(x), length.out = inputId$newbins + 1)
+    bins<- seq(min(x), max(x), length.out = input$newbins + 1)
     hist(x,
-      breaks = newbins, col = "darkgray", border = "white",
+      breaks = bins, col = "darkgray", border = "white",
       xlab = "Waiting time to next eruption (in mins)",
       main = "Histogram of waiting times"
     )
