@@ -5,8 +5,9 @@ ui <- fluidPage(
   sidebarLayout(
     sidebarPanel(
       h2("My app from scratch"),
-      sliderInput("newbins",
-        "Number of bins:",
+      sliderInput(
+        inputId = "newbins",
+        label = "Number of bins:",
         min = 1,
         max = 50,
         value = 30
@@ -18,7 +19,7 @@ ui <- fluidPage(
   )
 )
 
-server <- function(input, output) {
+server <- function(inputId, output) {
   output$distPlot <- renderPlot({
     x <- faithful[, 2]
     bins <- seq(min(x), max(x), length.out = input$bins + 1)
